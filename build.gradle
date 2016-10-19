@@ -5,6 +5,8 @@ apply plugin: 'java'
 
 apply plugin: 'distribution'
 
+apply plugin: 'checkstyle'
+
 sourceCompatibility = 1.5
 
 distributions {
