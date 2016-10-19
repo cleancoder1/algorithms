@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
 
@@ -10,8 +11,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public Deque() {
-        first = null;
-        last = null;
+
     }
 
     public boolean isEmpty() {
@@ -40,17 +40,34 @@ public class Deque<Item> implements Iterable<Item> {
     public void addLast(Item item) {
         Node oldLast = last;
         Node element = new Node();
-
-
+        element.item = item;
+        last = element;
+        oldLast.next = element;
     }
 
     public Item removeFirst() {
-        return null;
+        if (!isEmpty()) {
+            Item item = first.item;
+            first = first.next;
+            return item;
+        }
+
+        throw new NoSuchElementException();
     }
 
 
     public Item removeLast() {
-        return null;
+        if (!isEmpty()) {
+            Node current = first;
+            Node newLast = null;
+            while (current.next != null) {
+                current = current.next;
+                
+            }
+            return current.item;
+        }
+
+        throw new NoSuchElementException();
     }
 
     public Iterator<Item> iterator() {
