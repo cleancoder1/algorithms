@@ -2,11 +2,11 @@ import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item> {
 
-    Node first, last;
+    private Node first, last;
 
     private class Node {
-        Item item;
-        Node next;
+        private Item item;
+        private Node next;
     }
 
     public Deque() {

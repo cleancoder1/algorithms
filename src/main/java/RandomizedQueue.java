@@ -4,7 +4,7 @@ import java.util.Iterator;
 public class RandomizedQueue<Item> implements Iterable<Item> {
     public RandomizedQueue() {
 
-    }           // construct an empty randomized queue
+    }
 
     public static void main(String[] args) {
 

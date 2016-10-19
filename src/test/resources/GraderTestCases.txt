@@ -1,0 +1,500 @@
+Tests 1-6 make random calls to addFirst(), addLast(), removeFirst(),
+removeLast(), isEmpty(), and size(). The probabilities of each
+operation are (p1, p2, p3, p4, p5, p6), respectively.
+
+Test 1: Calls to addFirst(), addLast(), and size()
+  *    5 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+    - student   size() returned 0
+    - reference size() returned 2
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.size()
+
+  *   50 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+    - student   size() returned 0
+    - reference size() returned 3
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.size()
+
+  *  500 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+    - student   size() returned 3
+    - reference size() returned 4
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.size()
+         deque.addFirst(2)
+         deque.addLast(3)
+         deque.addFirst(4)
+         deque.size()
+
+  * 1000 random calls (0.4, 0.4, 0.0, 0.0, 0.0, 0.2)
+    - student   size() returned 1
+    - reference size() returned 9
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.addLast(3)
+         deque.addLast(4)
+         deque.addFirst(5)
+         deque.addLast(6)
+         deque.addLast(7)
+         deque.addLast(8)
+         deque.size()
+
+==> FAILED
+
+Test 2: Calls to addFirst(), removeFirst(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 2 of 5
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.removeFirst()     ==> null
+
+  *   50 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 20 of 50
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 19
+
+  *  500 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 2 of 500
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.removeFirst()     ==> null
+
+  * 1000 random calls (0.8, 0.0, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 5 of 1000
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 4
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addFirst(1)
+         deque.isEmpty()
+         deque.addFirst(3)
+         deque.addFirst(4)
+         deque.removeFirst()     ==> null
+
+  *    5 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 2 of 5
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addFirst(1)
+         deque.removeFirst()     ==> null
+
+  *   50 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 3 of 50
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 2
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.addFirst(2)
+         deque.removeFirst()     ==> null
+
+  *  500 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 1 of 500
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.removeFirst()     ==> null
+
+  * 1000 random calls (0.1, 0.0, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 4 of 1000
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 3
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.addFirst(3)
+         deque.removeFirst()     ==> null
+
+==> FAILED
+
+Test 3: Calls to addFirst(), removeLast(), and isEmpty()
+  *    5 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+    - failed on operation 10 of 50
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.addFirst(2)
+         deque.addFirst(3)
+         deque.addFirst(4)
+         deque.addFirst(5)
+         deque.addFirst(6)
+         deque.addFirst(7)
+         deque.addFirst(8)
+         deque.addFirst(9)
+         deque.removeLast()      ==> null
+
+  *  500 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+    - failed on operation 8 of 500
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.addFirst(2)
+         deque.addFirst(3)
+         deque.addFirst(4)
+         deque.addFirst(5)
+         deque.addFirst(6)
+         deque.addFirst(7)
+         deque.removeLast()      ==> null
+
+  * 1000 random calls (0.8, 0.0, 0.0, 0.1, 0.1, 0.0)
+    - failed on operation 5 of 1000
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.isEmpty()
+         deque.addFirst(3)
+         deque.addFirst(4)
+         deque.removeLast()      ==> null
+
+  *    5 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+  *   50 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 1 of 50
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.removeLast()      ==> null
+
+  *  500 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 3 of 500
+    - student   removeLast() returned null
+    - reference removeLast() returned 1
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addFirst(1)
+         deque.isEmpty()
+         deque.removeLast()      ==> null
+
+  * 1000 random calls (0.1, 0.0, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 5 of 1000
+    - student   removeLast() returned null
+    - reference removeLast() returned 4
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.addFirst(4)
+         deque.removeLast()      ==> null
+
+==> FAILED
+
+Test 4: Calls to addLast(), removeLast(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+    - student   isEmpty() returned true
+    - reference isEmpty() returned false
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.addLast(3)
+         deque.addLast(4)
+         deque.addLast(5)
+         deque.addLast(6)
+         deque.isEmpty()
+
+  *  500 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+    - failed on operation 7 of 500
+    - student   removeLast() returned null
+    - reference removeLast() returned 6
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.addLast(3)
+         deque.addLast(4)
+         deque.addLast(5)
+         deque.addLast(6)
+         deque.removeLast()      ==> null
+
+  * 1000 random calls (0.0, 0.8, 0.0, 0.1, 0.1, 0.0)
+    - failed on operation 2 of 1000
+    - student   removeLast() returned null
+    - reference removeLast() returned 1
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.removeLast()      ==> null
+
+  *    5 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 1 of 5
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeLast()      ==> null
+
+  *   50 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 2 of 50
+    - student   removeLast() returned null
+    - reference removeLast() returned 1
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addLast(1)
+         deque.removeLast()      ==> null
+
+  *  500 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 1 of 500
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeLast()      ==> null
+
+  * 1000 random calls (0.0, 0.1, 0.0, 0.8, 0.1, 0.0)
+    - failed on operation 2 of 1000
+    - student   removeLast() returned null
+    - reference removeLast() returned 1
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addLast(1)
+         deque.removeLast()      ==> null
+
+==> FAILED
+
+Test 5: Calls to addLast(), removeFirst(), and isEmpty()
+  *    5 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+  *   50 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 2 of 50
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.removeFirst()     ==> null
+
+  *  500 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+    - failed on operation 3 of 500
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.removeFirst()     ==> null
+
+  * 1000 random calls (0.0, 0.8, 0.1, 0.0, 0.1, 0.0)
+    - student   isEmpty() returned true
+    - reference isEmpty() returned false
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.isEmpty()
+
+  *    5 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 1 of 5
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeFirst()     ==> null
+
+  *   50 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 1 of 50
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeFirst()     ==> null
+
+  *  500 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 2 of 500
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.addLast(1)
+         deque.removeFirst()     ==> null
+
+  * 1000 random calls (0.0, 0.1, 0.8, 0.0, 0.1, 0.0)
+    - failed on operation 1 of 1000
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.removeFirst()     ==> null
+
+==> FAILED
+
+Test 6: Calls to addFirst(), addLast(), removeFirst(),
+        removeLast(), isEmpty(), and size().
+  *    5 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+    - failed on operation 1 of 5
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.removeFirst()     ==> null
+
+  *   50 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+    - failed on operation 1 of 50
+    - student   removeLast() returned null
+    - reference removeLast() returned 0
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.removeLast()      ==> null
+
+  *  500 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+    - student   isEmpty() returned true
+    - reference isEmpty() returned false
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addLast(1)
+         deque.addLast(2)
+         deque.addLast(3)
+         deque.isEmpty()
+
+  * 1000 random calls (0.3, 0.3, 0.1, 0.1, 0.1, 0.1)
+    - student   size() returned 4
+    - reference size() returned 8
+    - sequence of dequeue operations was:
+         deque.addLast(0)
+         deque.addFirst(1)
+         deque.addLast(2)
+         deque.addFirst(3)
+         deque.addLast(4)
+         deque.addFirst(5)
+         deque.addFirst(6)
+         deque.addLast(7)
+         deque.size()
+
+  *    5 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    - failed on operation 3 of 5
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.addFirst(0)
+         deque.addFirst(1)
+         deque.addLast(2)
+         deque.removeFirst()     ==> null
+
+  *   50 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    - failed on operation 4 of 50
+    - student   removeLast() returned null
+    - reference removeLast() returned 2
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.addLast(2)
+         deque.addFirst(3)
+         deque.removeLast()      ==> null
+
+  *  500 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    - failed on operation 3 of 500
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 2
+    - sequence of dequeue operations was:
+         deque.isEmpty()
+         deque.isEmpty()
+         deque.addFirst(2)
+         deque.removeFirst()     ==> null
+
+  * 1000 random calls (0.1, 0.1, 0.3, 0.3, 0.1, 0.1)
+    - failed on operation 2 of 1000
+    - student   removeFirst() returned null
+    - reference removeFirst() returned 1
+    - sequence of dequeue operations was:
+         deque.size()
+         deque.addLast(1)
+         deque.removeFirst()     ==> null
+
+==> FAILED
+
+Test 7: Removing from an empty deque
+  *  removeFirst()
+     java.util.NoSuchElementException not thrown
+  *  removeLast()
+     java.util.NoSuchElementException not thrown
+==> FAILED
+
+Test 8: Create multiple deque objects at the same time
+  Failed on 0th removeFirst() operation in deque 1: Returned null
+  Failed on 0th removeFirst() operation in deque 1: Returned null
+==> FAILED
+
+Test 9: Check iterator() after calls only to addFirst()
+==> passed
+
+Test 10: Check iterator() after intermixed calls to addFirst(), addLast(),
+         removeFirst(), and removeLast()
+     -  student   length = 1
+     -  reference length = 2
+     -  iterator failed after applying operation 2
+     -  sequence of dequeue operations was:
+          deque.addFirst(1)
+          deque.addLast(2)
+
+==> FAILED
+
+Test 11: Create two nested iterators to same deque
+  *  N = 10
+  isEmpty() returns wrong result
+    - student   = true
+    - reference = false
+     -  Failed on 0th addFirst() operation in deque
+  *  N = 1000
+  isEmpty() returns wrong result
+    - student   = true
+    - reference = false
+     -  Failed on 0th addFirst() operation in deque
+==> FAILED
+
+Test 12: Create two parallel iterators to same deque
+  *  N = 10
+  isEmpty() returns wrong result
+    - student   = true
+    - reference = false
+     -  Failed on 0th addFirst() operation in deque
+  *  N = 1000
+  isEmpty() returns wrong result
+    - student   = true
+    - reference = false
+     -  Failed on 0th addFirst() operation in deque
+==> FAILED
+
+Test 13: Create Deque objects of different parameterized types
+     java.lang.NullPointerException
+
+     TestDeque.test13(TestDeque.java:614)
+     TestDeque.main(TestDeque.java:751)
+
+==> FAILED
+
+Test 14: Check that addFirst() and addLast() each throw a NullPointerException
+         when inserting null items
+     - java.lang.NullPointerException not thrown for addFirst(null)
+     - java.lang.NullPointerException not thrown for addLast(null)
+==> FAILED
+
+Test 15: Check that remove() and next() throw the specified exceptions in iterator()
+     - java.util.NoSuchElementException not thrown for next()
+==> FAILED
+
+Test 16: Check iterator() when Deque is empty
+==> passed
