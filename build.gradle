@@ -3,7 +3,18 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
+apply plugin: 'distribution'
+
 sourceCompatibility = 1.5
+
+distributions {
+    main {
+        baseName = 'algorithms'
+        contents {
+            from { 'src/main/java/week2' }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
