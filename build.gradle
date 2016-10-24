@@ -7,7 +7,7 @@ apply plugin: 'distribution'
 
 apply plugin: 'checkstyle'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.7
 
 distributions {
     main {

@@ -8,6 +8,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private Node<Item> first;
     private Node<Item> last;
+    int size;
 
     private static class Node<Item> {
         Item item;
@@ -51,6 +52,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (oldLast != null) {
             oldLast.next = newElement;
         }
+        size++;
 
     }
 
@@ -59,7 +61,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (isEmpty) {
             throw new NoSuchElementException();
         }
-
+        size--;
         int index = StdRandom.uniform(0, size());
         Node<Item> node = getNode(index);
         if (index > 0) {
@@ -68,12 +70,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
         if (index == 0) {
             first = node.next;
+
             return node.item;
 
         }
         return node.item;
 
     }
+
 
     private Node<Item> getNode(int index) {
         Node<Item> x = first;
@@ -100,10 +104,22 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private class RandomizedQueueIterator implements Iterator<Item> {
         private Node<Item> current = first;
+        private int[] lookuptable;
+        int count = 0;
+
+        public RandomizedQueueIterator() {
+            lookuptable = new int[size];
+            for (int i = 0; i < size; i++) {
+                lookuptable[i] = i;
+            }
+            StdRandom.shuffle(lookuptable);
+
+        }
 
         @Override
         public boolean hasNext() {
-            return current != null;
+            return count == size;
+//            return current != null;
         }
 
         @Override
@@ -111,9 +127,14 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            Item item = current.item;
-            current = current.next;
-            return item;
+            int index = lookuptable[count];
+            Node<Item> node = getNode(index);
+            //remove this element at index
+            count++;
+            return node.item;
+//            Item item = current.item;
+//            current = current.next;
+//            return item;
         }
     }
 }

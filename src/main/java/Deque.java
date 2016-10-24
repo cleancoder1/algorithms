@@ -35,7 +35,7 @@ public class Deque<Item> implements Iterable<Item> {
         }
         boolean isEmpty = isEmpty();
         Node<Item> oldFirst = first;
-        Node<Item> element = new Node();
+        Node<Item> element = new Node<>();
         element.item = item;
         first = element;
         if (!isEmpty) {
@@ -53,8 +53,8 @@ public class Deque<Item> implements Iterable<Item> {
             throw new NullPointerException("cannot add nulls");
         }
         boolean isEmpty = isEmpty();
-        Node oldLast = last;
-        Node element = new Node();
+        Node<Item> oldLast = last;
+        Node<Item> element = new Node<>();
         element.item = item;
         last = element;
         if (!isEmpty) {
@@ -91,7 +91,7 @@ public class Deque<Item> implements Iterable<Item> {
                 last = null;
                 return item;
             }
-            Node newLast = last.previous;
+            Node<Item> newLast = last.previous;
             last = newLast;
             newLast.next = null;
             return item;
