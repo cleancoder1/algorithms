@@ -1,2 +1,4 @@
 rootProject.name = 'algorithm'
+include 'week1'
+include 'week2'
 
