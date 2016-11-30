@@ -14,6 +14,13 @@ dependencies {
 }
 
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+
 task zipLibs(type: Zip){
     from "src/main/java"
     baseName "percolation"
