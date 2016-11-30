@@ -4,9 +4,9 @@ public class Percolation {
 
     // create n-by-n grid, with all sites blocked
     private Site[][] grid;
-    private Site topVirtual, bottomVirtual;
     private int n;
-    private WeightedQuickUnionUF weightedQuickUnionFind;
+    private WeightedQuickUnionUF weightedQuickUnionFindForPercolation;
+    private WeightedQuickUnionUF weightedQuickUnionFindForFindingFull;
 
     public Percolation(int n) {
         if (n <= 0) {
@@ -19,7 +19,8 @@ public class Percolation {
                 grid[i][j] = Site.CLOSED;
             }
         }
-        weightedQuickUnionFind = new WeightedQuickUnionUF(n * n + 2);
+        weightedQuickUnionFindForPercolation = new WeightedQuickUnionUF(n * n + 2);
+        weightedQuickUnionFindForFindingFull = new WeightedQuickUnionUF(n * n + 1);
     }
 
     // open Site (row, col) if it is not open already
@@ -33,11 +34,12 @@ public class Percolation {
         }
         //top row
         if (row == 1) {
-            weightedQuickUnionFind.union(0, positionInGrid(row, col));
+            weightedQuickUnionFindForPercolation.union(0, positionInGrid(row, col));
+            weightedQuickUnionFindForFindingFull.union(0, positionInGrid(row, col));
         }
         //bottom row
         if (row == n) {
-            weightedQuickUnionFind.union((n * n) + 1, positionInGrid(row, col));
+            weightedQuickUnionFindForPercolation.union((n * n) + 1, positionInGrid(row, col));
         }
         grid[row][col] = Site.OPEN;
 
@@ -50,7 +52,8 @@ public class Percolation {
 
     private void connectTwoSites(int row1, int col1, int row2, int col2) {
         if (isValidCoordinate(row1, col1) && isOpen(row1, col1)) {
-            weightedQuickUnionFind.union(positionInGrid(row1, col1), positionInGrid(row2, col2));
+            weightedQuickUnionFindForPercolation.union(positionInGrid(row1, col1), positionInGrid(row2, col2));
+            weightedQuickUnionFindForFindingFull.union(positionInGrid(row1, col1), positionInGrid(row2, col2));
         }
     }
 
@@ -74,12 +77,12 @@ public class Percolation {
 
 
     public boolean isFull(int row, int col) {
-        return weightedQuickUnionFind.connected(0, (positionInGrid(row, col)));
+        return weightedQuickUnionFindForFindingFull.connected(0, (positionInGrid(row, col)));
     }
 
 
     public boolean percolates() {
-        return weightedQuickUnionFind.connected(0, (n * n) + 1);
+        return weightedQuickUnionFindForPercolation.connected(0, (n * n) + 1);
     }
 
 
