@@ -9,6 +9,9 @@ public class Percolation {
     private WeightedQuickUnionUF weightedQuickUnionFind;
 
     public Percolation(int n) {
+        if (n <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.n = n;
         grid = new Site[n + 1][n + 1];
         for (int i = 1; i <= n; i++) {
@@ -22,7 +25,7 @@ public class Percolation {
     // open Site (row, col) if it is not open already
     public void open(int row, int col) {
         if (!isValidCoordinate(row, col)) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         //site already open nothing to do
         if (isOpen(row, col)) {
@@ -34,7 +37,7 @@ public class Percolation {
         }
         //bottom row
         if (row == n) {
-            weightedQuickUnionFind.union(n+1, positionInGrid(row, col));
+            weightedQuickUnionFind.union((n * n) + 1, positionInGrid(row, col));
         }
         grid[row][col] = Site.OPEN;
 
@@ -62,14 +65,16 @@ public class Percolation {
 
 
     public boolean isOpen(int row, int col) {
+        if (!isValidCoordinate(row, col)) {
+            throw new IndexOutOfBoundsException();
+        }
 
-        Site Site = grid[row][col];
-        return Site == Site.OPEN;
+        return grid[row][col] == Site.OPEN;
     }
 
 
     public boolean isFull(int row, int col) {
-        return false;
+        return weightedQuickUnionFind.connected(0, (positionInGrid(row, col)));
     }
 
 
