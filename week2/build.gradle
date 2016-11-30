@@ -1,19 +1,27 @@
 group '1'
-version ''
-
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+
+sourceCompatibility = 1.7
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 
 task zipLibs(type: Zip){
     from "src/main/java"
-    baseName "percolation"
+    baseName "dequeue"
+}
+
+dependencies {
+    compile name: 'algs4'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
 }
