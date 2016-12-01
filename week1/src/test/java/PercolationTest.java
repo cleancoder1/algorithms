@@ -5,11 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-/**
- * Tests for the {@link Percolation} class.
- *
- * @author ISchwarz
- */
 public class PercolationTest {
 
     private static final int GRID_SIZE = 5;
@@ -75,6 +70,17 @@ public class PercolationTest {
 
         // then
         assertFalse(percolation.isFull(3, 2));
+    }
+
+    @Test
+    public void backwashTest(){
+    Percolation percolation = new Percolation(2);
+        percolation.open(1,1);
+        percolation.open(2,2);
+        percolation.open(1,2);
+        assertTrue(percolation.isFull(2,2));
+
+
     }
 
     @Test
