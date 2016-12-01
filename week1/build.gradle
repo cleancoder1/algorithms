@@ -2,6 +2,8 @@ group '1'
 version ''
 
 apply plugin: 'java'
+apply plugin: 'checkstyle'
+
 
 sourceCompatibility = 1.7
 
@@ -21,7 +23,7 @@ repositories {
 }
 
 
-task zipLibs(type: Zip){
+task zipLibs(type: Zip) {
     from "src/main/java"
     baseName "percolation"
 }

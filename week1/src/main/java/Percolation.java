@@ -77,6 +77,9 @@ public class Percolation {
 
 
     public boolean isFull(int row, int col) {
+        if (!isValidCoordinate(row, col)) {
+            throw new IndexOutOfBoundsException();
+        }
         return weightedQuickUnionFindForFindingFull.connected(0, (positionInGrid(row, col)));
     }
 
