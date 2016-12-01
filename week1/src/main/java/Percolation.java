@@ -6,7 +6,6 @@ public class Percolation {
     private Site[][] grid;
     private int n;
     private WeightedQuickUnionUF weightedQuickUnionFindForPercolation;
-    private boolean systemPercolates;
 
     public Percolation(int n) {
         if (n <= 0) {
@@ -45,18 +44,6 @@ public class Percolation {
         connectTwoSites(row, col - 1, row, col);
         connectTwoSites(row, col + 1, row, col);
 
-
-        if (!systemPercolates) {
-            //check if any bottom row became full and set the percolation flag
-            for (int j = 1; j <= n; j++) {
-                if (isFull(n, j)) {
-                    systemPercolates = true;
-                    return;
-                }
-            }
-        }
-
-
     }
 
 
@@ -90,16 +77,18 @@ public class Percolation {
         if (!isValidCoordinate(row, col)) {
             throw new IndexOutOfBoundsException();
         }
-        if (weightedQuickUnionFindForPercolation.find(positionInGrid(row, col)) == weightedQuickUnionFindForPercolation.find(0)) {
-            return true;
-        }
-        return false;
+        return weightedQuickUnionFindForPercolation.find(positionInGrid(row, col)) == weightedQuickUnionFindForPercolation.find(0);
     }
 
 
     public boolean percolates() {
 
-        return systemPercolates;
+        for (int j = 1; j <= n; j++) {
+            if (isFull(n, j)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
