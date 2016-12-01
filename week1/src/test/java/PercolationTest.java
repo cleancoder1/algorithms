@@ -84,6 +84,48 @@ public class PercolationTest {
     }
 
     @Test
+    public void backwashTestForGrid3(){
+        Percolation percolation = new Percolation(3);
+        percolation.open(1,3);
+        percolation.open(2,3);
+        percolation.open(3,3);
+        percolation.open(3,1);
+        percolation.open(2,1);
+        percolation.open(1,1);
+        assertTrue(percolation.isFull(3,1));
+
+
+    }
+
+
+    @Test
+    public void percolationTestForGrid6(){
+        Percolation percolation = new Percolation(6);
+       percolation.open(1, 6);
+       percolation.open(2, 6);
+       percolation.open(3, 6);
+       percolation.open(4, 6);
+       percolation.open(5, 6);
+       percolation.open(5, 5);
+       percolation.open(4, 4);
+       percolation.open(3, 4);
+       percolation.open(2, 4);
+       percolation.open(2, 3);
+       percolation.open(2, 2);
+       percolation.open(2, 1);
+       percolation.open(3, 1);
+       percolation.open(4, 1);
+       percolation.open(5, 1);
+       percolation.open(5, 2);
+       percolation.open(6, 2);
+       percolation.open(5, 4);
+
+        assertTrue(percolation.percolates());
+
+
+    }
+
+    @Test
     public void shouldNotBeFilled() {
         // when
         percolation.open(1, 3);
