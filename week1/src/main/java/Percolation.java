@@ -15,11 +15,11 @@ public class Percolation {
             throw new IllegalArgumentException();
         }
         this.n = n;
-        grid = new Site[n + 1][n + 1];
-        rootTopStatus = new boolean[n * n + 1];
-        rootBottomStatus = new boolean[n * n + 1];
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
+        grid = new Site[n][n];
+        rootTopStatus = new boolean[n * n];
+        rootBottomStatus = new boolean[n * n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 grid[i][j] = Site.CLOSED;
             }
         }
@@ -38,7 +38,7 @@ public class Percolation {
         //top row
         int i1 = positionInGrid(row, col);
 
-        grid[row][col] = Site.OPEN;
+        grid[row-1][col-1] = Site.OPEN;
 
 
         //check its neighbors and issue a union  if they are open
@@ -89,7 +89,7 @@ public class Percolation {
 
     private int positionInGrid(int rowNumber, int colNumber) {
 
-        return (rowNumber - 1) * n + colNumber;
+        return (rowNumber - 1) * n + colNumber - 1;
     }
 
 
@@ -98,7 +98,7 @@ public class Percolation {
             throw new IndexOutOfBoundsException();
         }
 
-        return grid[row][col] != Site.CLOSED;
+        return grid[row-1][col-1] != Site.CLOSED;
     }
 
 
