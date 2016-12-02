@@ -35,8 +35,7 @@ public class Percolation {
         if (isOpen(row, col)) {
             return;
         }
-        //top row
-        int i1 = positionInGrid(row, col);
+        int positionInGrid = positionInGrid(row, col);
 
         grid[row - 1][col - 1] = Site.OPEN;
 
@@ -46,7 +45,7 @@ public class Percolation {
         boolean[] bottomNeighborRootPosition = connectTwoSites(row + 1, col, row, col);
         boolean[] leftNeighborRootPosition = connectTwoSites(row, col - 1, row, col);
         boolean[] rightNeighborRootPosiiton = connectTwoSites(row, col + 1, row, col);
-        int rootPosition = weightedQuickUnionFindForPercolation.find(i1);
+        int rootPosition = weightedQuickUnionFindForPercolation.find(positionInGrid);
 
         if (row == 1) {
             rootTopStatus[rootPosition] = true;
