@@ -3,7 +3,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
 
     // create n-by-n grid, with all sites blocked
-    private Site[][] grid;
+    private boolean[][] grid;
     private int n;
     private WeightedQuickUnionUF weightedQuickUnionFindForPercolation;
     private boolean rootTopStatus[];
@@ -15,12 +15,12 @@ public class Percolation {
             throw new IllegalArgumentException();
         }
         this.n = n;
-        grid = new Site[n][n];
+        grid = new boolean[n][n];
         rootTopStatus = new boolean[n * n];
         rootBottomStatus = new boolean[n * n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                grid[i][j] = Site.CLOSED;
+                grid[i][j] = false;
             }
         }
         weightedQuickUnionFindForPercolation = new WeightedQuickUnionUF(n * n);
@@ -37,7 +37,7 @@ public class Percolation {
         }
         int positionInGrid = positionInGrid(row, col);
 
-        grid[row - 1][col - 1] = Site.OPEN;
+        grid[row - 1][col - 1] = true;
 
 
         //check its neighbors and issue a union  if they are open
@@ -97,7 +97,7 @@ public class Percolation {
             throw new IndexOutOfBoundsException();
         }
 
-        return grid[row - 1][col - 1] != Site.CLOSED;
+        return grid[row - 1][col - 1] == true;
     }
 
 
@@ -121,7 +121,5 @@ public class Percolation {
 
     }
 
-    private enum Site {
-        OPEN, CLOSED
-    }
+
 }
