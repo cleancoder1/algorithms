@@ -23,7 +23,7 @@ public class Percolation {
                 grid[i][j] = Site.CLOSED;
             }
         }
-        weightedQuickUnionFindForPercolation = new WeightedQuickUnionUF(n * n + 1);
+        weightedQuickUnionFindForPercolation = new WeightedQuickUnionUF(n * n);
     }
 
     // open Site (row, col) if it is not open already
@@ -38,7 +38,7 @@ public class Percolation {
         //top row
         int i1 = positionInGrid(row, col);
 
-        grid[row-1][col-1] = Site.OPEN;
+        grid[row - 1][col - 1] = Site.OPEN;
 
 
         //check its neighbors and issue a union  if they are open
@@ -98,7 +98,7 @@ public class Percolation {
             throw new IndexOutOfBoundsException();
         }
 
-        return grid[row-1][col-1] != Site.CLOSED;
+        return grid[row - 1][col - 1] != Site.CLOSED;
     }
 
 
