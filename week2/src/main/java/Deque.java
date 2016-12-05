@@ -28,7 +28,7 @@ public class Deque<Item> implements Iterable<Item> {
         if (head == tail)
             doubleCapacity();
 
-    }          // add the item to the front
+        }          // add the item to the front
 
     public void addLast(Item e) {
         if (e == null)
@@ -111,7 +111,6 @@ public class Deque<Item> implements Iterable<Item> {
          * iterator and also to check for comodification.
          */
         private int fence = tail;
-
 
 
         public boolean hasNext() {
