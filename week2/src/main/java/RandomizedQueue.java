@@ -44,10 +44,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (tail == 0) {
             throw new NoSuchElementException();
         }
-        int index = StdRandom.uniform(0, size());
-        Item element = (Item) elements[index];
-        elements[index] = null; //avoid loitering
-
+        Item element = (Item) elements[head];
+        elements[head] = null; //avoid loitering
+        head = head + 1;
         return element;
     }
 
