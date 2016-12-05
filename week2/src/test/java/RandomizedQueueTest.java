@@ -155,28 +155,28 @@ public class RandomizedQueueTest {
         assertSame(0, q.size());
     }
 
-    @Test(expected= NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void test_add_null() {
         q.enqueue(null);
     }
 
-    @Test(expected= NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void test_dequeue_empty() {
         q.dequeue();
     }
 
-    @Test(expected= NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void test_sample_empty() {
         q.sample();
     }
 
-    @Test(expected= NoSuchElementException.class)
+    @Test(expected = NoSuchElementException.class)
     public void test_iter_next_empty() {
         Iterator<Integer> iter = q.iterator();
         iter.next();
     }
 
-    @Test(expected= UnsupportedOperationException.class)
+    @Test(expected = UnsupportedOperationException.class)
     public void test_iter_remove() {
         Iterator<Integer> iter = q.iterator();
         iter.remove();
@@ -199,11 +199,11 @@ public class RandomizedQueueTest {
 
     @Test
     public void test_multiple_dels() {
-        Integer[] ints = { 23, 5, 3, 67 };
+        Integer[] ints = {23, 5, 3, 67};
         for (int i : ints) q.enqueue(i);
         assertSame(4, q.size());
 
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             assertTrue(Arrays.asList(ints).contains(q.dequeue()));
         }
 
@@ -226,7 +226,7 @@ public class RandomizedQueueTest {
 
     @Test
     public void test_iter() {
-        Integer[] ints = { 23, 5, 3, 67 };
+        Integer[] ints = {23, 5, 3, 67};
         for (int i : ints) q.enqueue(i);
 
         for (Integer i : q) assertTrue(Arrays.asList(ints).contains(i));
@@ -235,7 +235,7 @@ public class RandomizedQueueTest {
 
     @Test
     public void test_iter_raw() {
-        Integer[] ints = { 23, 5, 3, 67 };
+        Integer[] ints = {23, 5, 3, 67};
         for (int i : ints) q.enqueue(i);
 
         Iterator<Integer> iter = q.iterator();
@@ -267,7 +267,7 @@ public class RandomizedQueueTest {
 
     @Test
     public void test_multiple_iters() {
-        Integer[] ints = { 23, 5, 3, 67, 456, 9, 23, 68 };
+        Integer[] ints = {23, 5, 3, 67, 456, 9, 23, 68};
         for (int i : ints) q.enqueue(i);
 
         /* Little awkward: Generate two iterators from the same queue and
@@ -293,6 +293,22 @@ public class RandomizedQueueTest {
         assertFalse(match);
 
     }
+
+    @Test
+    public void rand() {
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        rq.enqueue(320);
+        assertTrue(rq.sample() == 320);
+        assertTrue(rq.sample() == 320);
+        assertTrue(rq.sample() == 320);
+        assertTrue(rq.dequeue() == 320);
+        assertTrue(rq.size() == 0);
+        assertTrue(rq.size() == 0);
+        assertTrue(rq.isEmpty() == true);
+        rq.enqueue(917);
+        assertTrue(rq.sample() == 917);
+    }
+
 
 }
 

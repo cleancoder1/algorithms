@@ -69,7 +69,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
         }
 
-        int index = StdRandom.uniform(0, size());
+        int index = StdRandom.uniform(head, tail);
         return (Item) elements[index];
     }
 
