@@ -37,6 +37,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         }
         elements[tail++] = item;
 
+        int loc = StdRandom.uniform(0, size());
+        Item temp = (Item) elements[loc];
+        elements[loc] = elements[size() - 1];
+        elements[size() - 1] = temp; // last one
+
 
     }
 
