@@ -52,6 +52,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         Item element = (Item) elements[head];
         elements[head] = null; //avoid loitering
         head = head + 1;
+
+        if (size() > 0 && size() == elements.length / 4) {
+            shrink(elements.length / 2);
+        }
+
         return element;
     }
 
@@ -62,6 +67,17 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         for (int i = 0; i < length; i++)
             copy[i] = elements[i];
         elements = copy;
+    }
+
+    private void shrink(int newLength) {
+
+        Object[] copy = new Object[newLength];
+        int j = 0;
+        for (int i = head; i < tail; i++) {
+            copy[j] = elements[i];
+            j++;
+        }
+
     }
 
     public Item sample() {
