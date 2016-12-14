@@ -50,7 +50,7 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        return (that.y - y) / (that.x - x);
+        return 1.0 * (that.y - y) / (that.x - x);
     }
 
     /**

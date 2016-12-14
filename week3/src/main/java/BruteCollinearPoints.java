@@ -4,16 +4,15 @@ import java.util.List;
 
 public class BruteCollinearPoints {
 
-    private Point[] points;
     List<LineSegment> lineSegments = new ArrayList<LineSegment>();
 
     public BruteCollinearPoints(Point[] points) {
 
-        if (points == null)
+        if (points == null) {
             throw new NullPointerException();
-
+        }
         Arrays.sort(points);
-        this.points = points;
+        checkDuplicates(points);
 
         for (int i = 0; i < points.length - 3; i++) {
             for (int j = i + 1; j < points.length - 2; j++) {
@@ -23,8 +22,6 @@ public class BruteCollinearPoints {
                         if (lineSegment != null) {
                             lineSegments.add(lineSegment);
                         }
-
-
                     }
                 }
             }
@@ -32,6 +29,22 @@ public class BruteCollinearPoints {
 
 
     }   // finds all line segments containing 4 points
+
+    private void checkDuplicates(Point[] points) {
+
+        if (points.length < 2) {
+            return;
+        }
+
+
+        for (int i = 0; i < points.length - 1; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                if (points[i].toString().equalsIgnoreCase(points[j].toString())) {
+                    throw new IllegalArgumentException();
+                }
+            }
+        }
+    }
 
     public int numberOfSegments() {
         return lineSegments.size();
@@ -47,12 +60,12 @@ public class BruteCollinearPoints {
 
     private LineSegment possibleLineSegment(Point p1, Point p2, Point p3, Point p4) {
 
-        double slope1 = p1.slopeTo(p2);
-        double slope2 = p3.slopeTo(p4);
+        double slope1To2 = p1.slopeTo(p2);
+        double slope2To3 = p2.slopeTo(p3);
+        double slope3To4 = p3.slopeTo(p4);
 
-        boolean isCollinear = Double.compare(slope1, slope2) == 0;
+        boolean isCollinear = Double.compare(slope1To2, slope2To3) == 0 && Double.compare(slope2To3, slope3To4) == 0 && Double.compare(slope1To2, slope3To4) == 0;
         if (!isCollinear) {
-
             return null;
         }
 
