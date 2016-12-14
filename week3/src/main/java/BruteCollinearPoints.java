@@ -14,6 +14,10 @@ public class BruteCollinearPoints {
         Arrays.sort(points);
         checkDuplicates(points);
 
+        if (points.length < 4) {
+            return;
+        }
+
         for (int i = 0; i < points.length - 3; i++) {
             for (int j = i + 1; j < points.length - 2; j++) {
                 for (int k = j + 1; k < points.length - 1; k++) {
@@ -38,12 +42,11 @@ public class BruteCollinearPoints {
 
 
         for (int i = 0; i < points.length - 1; i++) {
-            for (int j = i + 1; j < points.length; j++) {
-                if (points[i].toString().equalsIgnoreCase(points[j].toString())) {
-                    throw new IllegalArgumentException();
-                }
+            if (points[i].toString().equalsIgnoreCase(points[i + 1].toString())) {
+                throw new IllegalArgumentException();
             }
         }
+
     }
 
     public int numberOfSegments() {
