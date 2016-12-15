@@ -13,6 +13,7 @@ repositories {
 
 task zipLibs(type: Zip){
     from "src/main/java"
+    exclude "Client.java"
     baseName "collinear"
 }
 

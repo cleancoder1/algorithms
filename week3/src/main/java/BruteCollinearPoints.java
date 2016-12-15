@@ -4,25 +4,25 @@ import java.util.List;
 
 public class BruteCollinearPoints {
 
-    List<LineSegment> lineSegments = new ArrayList<LineSegment>();
+    private List<LineSegment> lineSegments = new ArrayList<LineSegment>();
 
     public BruteCollinearPoints(Point[] points) {
-
-        if (points == null) {
+        Point[] pointsClone = points.clone();
+        if (pointsClone == null) {
             throw new NullPointerException();
         }
-        Arrays.sort(points);
-        checkDuplicates(points);
+        Arrays.sort(pointsClone);
+        checkDuplicates(pointsClone);
 
-        if (points.length < 4) {
+        if (pointsClone.length < 4) {
             return;
         }
 
-        for (int i = 0; i < points.length - 3; i++) {
-            for (int j = i + 1; j < points.length - 2; j++) {
-                for (int k = j + 1; k < points.length - 1; k++) {
-                    for (int l = k + 1; l < points.length; l++) {
-                        LineSegment lineSegment = possibleLineSegment(points[i], points[j], points[k], points[l]);
+        for (int i = 0; i < pointsClone.length - 3; i++) {
+            for (int j = i + 1; j < pointsClone.length - 2; j++) {
+                for (int k = j + 1; k < pointsClone.length - 1; k++) {
+                    for (int l = k + 1; l < pointsClone.length; l++) {
+                        LineSegment lineSegment = possibleLineSegment(pointsClone[i], pointsClone[j], pointsClone[k], pointsClone[l]);
                         if (lineSegment != null) {
                             lineSegments.add(lineSegment);
                         }
@@ -42,7 +42,7 @@ public class BruteCollinearPoints {
 
 
         for (int i = 0; i < points.length - 1; i++) {
-            if (points[i].toString().equalsIgnoreCase(points[i + 1].toString())) {
+            if (points[i].compareTo(points[i + 1]) == 0) {
                 throw new IllegalArgumentException();
             }
         }
