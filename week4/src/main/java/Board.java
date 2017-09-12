@@ -1,7 +1,6 @@
 public class Board {
-    public Board(int[][] blocks)           // construct a board from an n-by-n array of blocks
+    public Board(int[][] blocks)    {       // construct a board from an n-by-n array of blocks
     // (where blocks[i][j] = block in row i, column j)
-    {
 
     }
 
@@ -43,5 +42,5 @@ public class Board {
 
     public static void main(String[] args) {
 
-    }// unit tests (not graded)
+    }
 }
