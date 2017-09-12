@@ -24,7 +24,7 @@ public class Solver {
 
     public static void main(String[] args) {
         // create initial board from file
-        In in = new In("puzzle04.txt");
+        In in = new In("../../resources/main/puzzle04.txt");
         int n = in.readInt();
         int[][] blocks = new int[n][n];
         for (int i = 0; i < n; i++)
