@@ -2,7 +2,6 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 
-
 public class Solver {
     public Solver(Board initial) {
 
@@ -13,6 +12,9 @@ public class Solver {
     }
 
     public int moves() {
+        if (!isSolvable()) {
+            System.out.println("puzzle is solvable ");
+        }
         throw new IllegalArgumentException();
 
     }

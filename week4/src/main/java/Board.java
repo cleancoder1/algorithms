@@ -1,7 +1,12 @@
 public class Board {
-    public Board(int[][] blocks)    {       // construct a board from an n-by-n array of blocks
-    // (where blocks[i][j] = block in row i, column j)
 
+    private int[][] elements;
+    private int n;
+
+    public Board(int[][] blocks) {       // construct a board from an n-by-n array of blocks
+        // (where blocks[i][j] = block in row i, column j)
+        elements = blocks;
+        n = blocks.length;
     }
 
     public int dimension() {
@@ -20,8 +25,24 @@ public class Board {
     }             // sum of Manhattan distances between blocks and goal
 
     public boolean isGoal() {
-        throw new IllegalArgumentException();
+        int count = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (isLastElement(i, j) && elements[i][j] != 0) {
+                    return false;
+                }
+                if (!isLastElement(i, j) && elements[i][j] != count) {
+                    return false;
+                }
+                count++;
+            }
+        }
+        return true;
     }            // is this board the goal board?
+
+    private boolean isLastElement(int i, int j) {
+        return i == n - 1 && j == n - 1;
+    }
 
     public Board twin() {
         throw new IllegalArgumentException();
