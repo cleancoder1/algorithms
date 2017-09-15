@@ -1,10 +1,27 @@
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import static org.junit.Assert.assertThat;
+
 
 public class BoardTest {
 
 
     @Test
     public void constructsBoardProperly() throws Exception {
+        int[][] elements = constructABoard();
+        System.out.println(elements);
+        Board board = new Board(elements);
+        assert board.isGoal() == true;
+
+    }
+
+    private int[][] constructABoard() {
         int[][] elements = new int[3][3];
         int c = 1;
         for (int i = 0; i < 3; i++) {
@@ -16,9 +33,32 @@ public class BoardTest {
                 }
             }
         }
-        System.out.println(elements);
-        Board board = new Board(elements);
-        assert board.isGoal() == true;
+        return elements;
+    }
 
+    @Test
+    public void returnsNeighbors() {
+
+        int[][] elements = constructABoard();
+        Board board = new Board(elements);
+
+        List<Board> neighborsList = makeCollection(board.neighbors());
+//        left    up
+//        123     123
+//        456     450
+//        708     786
+
+        int[][] leftNeighbor = {{1, 2, 3}, {4, 5, 6}, {7, 0, 8}};
+        Board leftNeightbor = new Board(leftNeighbor);
+        assertThat(neighborsList, Matchers.containsInAnyOrder(leftNeightbor));
+
+    }
+
+    private static <E> List<E> makeCollection(Iterable<E> iter) {
+        List<E> list = new ArrayList<E>();
+        for (E item : iter) {
+            list.add(item);
+        }
+        return list;
     }
 }

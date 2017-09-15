@@ -3,16 +3,15 @@ public class Board {
     private int[][] elements;
     private int n;
 
-    public Board(int[][] blocks) {       // construct a board from an n-by-n array of blocks
-        // (where blocks[i][j] = block in row i, column j)
+    public Board(int[][] blocks) {
         elements = blocks;
         n = blocks.length;
     }
 
     public int dimension() {
-        throw new IllegalArgumentException();
+        return n;
 
-    }               // board dimension n
+    }
 
     public int hamming() {
 
@@ -38,7 +37,7 @@ public class Board {
             }
         }
         return true;
-    }            // is this board the goal board?
+    }
 
     private boolean isLastElement(int i, int j) {
         return i == n - 1 && j == n - 1;
