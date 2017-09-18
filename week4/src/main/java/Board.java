@@ -87,8 +87,8 @@ public class Board {
     public Iterable<Board> neighbors() {
 
         List<Board> neighbors = new ArrayList();
-        int xposition = positionOfZero()[0];
-        int yposition = positionOfZero()[1];
+        int xposition = positionOfElement(0)[0];
+        int yposition = positionOfElement(0)[1];
         if (xposition > 0) {
             Board upNeighbor = swapBoard(xposition, yposition, xposition - 1, yposition);
             neighbors.add(upNeighbor);
@@ -99,12 +99,12 @@ public class Board {
             neighbors.add(rightNeighbor);
 
         }
-        if (xposition < n) {
+        if (xposition < n-1) {
             Board downNeighbor = swapBoard(xposition, yposition, xposition + 1, yposition);
             neighbors.add(downNeighbor);
 
         }
-        if (yposition < n) {
+        if (yposition < n-1) {
             Board leftNeighbor = swapBoard(xposition, yposition, xposition, yposition + 1);
             neighbors.add(leftNeighbor);
 
@@ -130,19 +130,6 @@ public class Board {
             }
         }
         return new Board(elementCopy);
-    }
-
-    private int[] positionOfZero() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (elements[i][j] == 0) {
-                    int[] position = {i, j};
-
-                    return position;
-                }
-            }
-        }
-        throw new IllegalArgumentException();
     }
 
     private int[] positionOfElement(int value) {
