@@ -61,6 +61,15 @@ public class BoardTest {
 
     }
 
+
+    @Test
+    public void manhattanComputation() throws Exception {
+        int[][] elements = {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}};
+        Board board = new Board(elements);
+        assertEquals(10, board.manhattan());
+
+    }
+
     private static <E> List<E> makeCollection(Iterable<E> iter) {
         List<E> list = new ArrayList<E>();
         for (E item : iter) {

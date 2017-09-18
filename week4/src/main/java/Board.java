@@ -32,8 +32,24 @@ public class Board {
     }
 
     public int manhattan() {
-        throw new IllegalArgumentException();
+        int manhattan = 0;
+        int count = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (isLastElement(i, j)) {
+                    return manhattan;
+                }
+                int[] ints = positionOfElement(count);
+                int xposition = ints[0];
+                int yposition = ints[1];
+                manhattan += Math.abs(xposition - i) + Math.abs(yposition - j);
+                count++;
+            }
+        }
+
+        return manhattan;
     }
+
 
     public boolean isGoal() {
         int count = 1;
@@ -120,6 +136,19 @@ public class Board {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (elements[i][j] == 0) {
+                    int[] position = {i, j};
+
+                    return position;
+                }
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private int[] positionOfElement(int value) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (elements[i][j] == value) {
                     int[] position = {i, j};
 
                     return position;
