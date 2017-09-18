@@ -72,8 +72,17 @@ public class Board {
     }
 
     public Board twin() {
-        throw new IllegalArgumentException();
-    }            // a board that is obtained by exchanging any pair of blocks
+        //pick first  two elements from row zero is not there
+        int[] positionOfZero = positionOfElement(0);
+        int x = positionOfZero[0];
+        if (x != 0) {
+            return swapBoard(0, 0, 1, 1);
+
+        }
+        return swapBoard(n - 1, 0, n - 1, 1);
+
+
+    }
 
     public boolean equals(Object y) {
         if (!(y instanceof Board)) {
