@@ -99,12 +99,12 @@ public class Board {
             neighbors.add(rightNeighbor);
 
         }
-        if (xposition < n-1) {
+        if (xposition < n - 1) {
             Board downNeighbor = swapBoard(xposition, yposition, xposition + 1, yposition);
             neighbors.add(downNeighbor);
 
         }
-        if (yposition < n-1) {
+        if (yposition < n - 1) {
             Board leftNeighbor = swapBoard(xposition, yposition, xposition, yposition + 1);
             neighbors.add(leftNeighbor);
 
@@ -146,8 +146,22 @@ public class Board {
     }
 
     public String toString() {
-        throw new IllegalArgumentException();
-    }            // string representation of this board (in the output format specified below)
+        StringBuilder s = new StringBuilder(String.valueOf(n));
+        s.append("\n");
+        for (int i = 0; i < n; i++) {
+            s.append(" ");
+            for (int j = 0; j < n; j++) {
+                s.append(elements[i][j]);
+                if (j != n - 1) {
+                    s.append(" ");
+                }
+            }
+            if (i != n - 1) {
+                s.append("\n");
+            }
+        }
+        return s.toString();
+    }
 
     public static void main(String[] args) {
 

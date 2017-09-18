@@ -70,6 +70,17 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void toStringTest() throws Exception {
+        int[][] elements = {{0, 1, 3}, {4, 2, 5}, {7, 8, 6}};
+        Board board = new Board(elements);
+        String result = board.toString();
+        String expected = "3" + "\n" + " 0 1 3" + "\n" + " 4 2 5" + "\n" + " 7 8 6";
+        assertEquals(expected, result);
+
+    }
+
+
     private static <E> List<E> makeCollection(Iterable<E> iter) {
         List<E> list = new ArrayList<E>();
         for (E item : iter) {
