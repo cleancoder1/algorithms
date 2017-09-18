@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 
@@ -49,6 +50,14 @@ public class BoardTest {
         Board leftNeighbor = new Board(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 0, 8}});
         Board upNeighbor = new Board(new int[][]{{1, 2, 3}, {4, 5, 0}, {7, 8, 6}});
         assertThat(neighborsList, Matchers.containsInAnyOrder(leftNeighbor, upNeighbor));
+
+    }
+
+    @Test
+    public void hammingComputation() throws Exception {
+        int[][] elements = {{8, 1, 3}, {4, 0, 2}, {7, 6, 5}};
+        Board board = new Board(elements);
+        assertEquals(5, board.hamming());
 
     }
 

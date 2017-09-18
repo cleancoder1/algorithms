@@ -18,14 +18,22 @@ public class Board {
     }
 
     public int hamming() {
-
-        throw new IllegalArgumentException();
-
-    }               // number of blocks out of place
+        int count = 1;
+        int hamming = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (!isLastElement(i, j) && elements[i][j] != count) {
+                    hamming++;
+                }
+                count++;
+            }
+        }
+        return hamming;
+    }
 
     public int manhattan() {
         throw new IllegalArgumentException();
-    }             // sum of Manhattan distances between blocks and goal
+    }
 
     public boolean isGoal() {
         int count = 1;
