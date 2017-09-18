@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Board {
 
     private int[][] elements;
@@ -48,13 +52,74 @@ public class Board {
     }            // a board that is obtained by exchanging any pair of blocks
 
     public boolean equals(Object y) {
-        throw new IllegalArgumentException();
+        if (!(y instanceof Board)) {
+            return false;
+        }
+        Board other = (Board) y;
+        return Arrays.deepEquals(this.elements, other.elements);
 
-    }      // does this board equal y?
+    }
 
     public Iterable<Board> neighbors() {
+
+        List<Board> neighbors = new ArrayList();
+        int xposition = positionOfZero()[0];
+        int yposition = positionOfZero()[1];
+        if (xposition > 0) {
+            Board upNeighbor = swapBoard(xposition, yposition, xposition - 1, yposition);
+            neighbors.add(upNeighbor);
+
+        }
+        if (yposition > 0) {
+            Board rightNeighbor = swapBoard(xposition, yposition, xposition, yposition - 1);
+            neighbors.add(rightNeighbor);
+
+        }
+        if (xposition < n) {
+            Board downNeighbor = swapBoard(xposition, yposition, xposition + 1, yposition);
+            neighbors.add(downNeighbor);
+
+        }
+        if (yposition < n) {
+            Board leftNeighbor = swapBoard(xposition, yposition, xposition, yposition + 1);
+            neighbors.add(leftNeighbor);
+
+        }
+        return neighbors;
+
+    }
+
+    private Board swapBoard(int x1, int y1, int x2, int y2) {
+        //assert i ,j ,k , l are valid co-ordinates
+        int[][] elementCopy = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == x1 && j == y1) {
+                    elementCopy[i][j] = elements[x2][y2];
+                } else if (i == x2 && j == y2) {
+                    elementCopy[i][j] = elements[x1][y1];
+                } else {
+                    elementCopy[i][j] = elements[i][j];
+                }
+
+            }
+        }
+        return new Board(elementCopy);
+    }
+
+    private int[] positionOfZero() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (elements[i][j] == 0) {
+                    int[] position = {i, j};
+
+                    return position;
+                }
+            }
+        }
         throw new IllegalArgumentException();
-    }   // all neighboring boards
+    }
 
     public String toString() {
         throw new IllegalArgumentException();

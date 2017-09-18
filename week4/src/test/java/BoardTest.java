@@ -1,9 +1,7 @@
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.assertThat;
@@ -48,9 +46,9 @@ public class BoardTest {
 //        456     450
 //        708     786
 
-        int[][] leftNeighbor = {{1, 2, 3}, {4, 5, 6}, {7, 0, 8}};
-        Board leftNeightbor = new Board(leftNeighbor);
-        assertThat(neighborsList, Matchers.containsInAnyOrder(leftNeightbor));
+        Board leftNeighbor = new Board(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 0, 8}});
+        Board upNeighbor = new Board(new int[][]{{1, 2, 3}, {4, 5, 0}, {7, 8, 6}});
+        assertThat(neighborsList, Matchers.containsInAnyOrder(leftNeighbor, upNeighbor));
 
     }
 
