@@ -13,50 +13,35 @@ public class Solver {
 
     public Solver(Board initial) {
 
-        MinPQ<GameBoard> priorityQuueue = new MinPQ<>();
-        priorityQuueue.insert(new GameBoard(initial, null, 0));
-        MinPQ<GameBoard> swapPriorityQuueue = new MinPQ<>();
+        MinPQ<GameBoard> priorityQueue = new MinPQ<>();
+        priorityQueue.insert(new GameBoard(initial, null, 0));
+        MinPQ<GameBoard> swapPriorityQueue = new MinPQ<>();
         Board twin = initial.twin();
-        swapPriorityQuueue.insert(new GameBoard(twin, null, 0));
+        swapPriorityQueue.insert(new GameBoard(twin, null, 0));
         while (solvedGameBoard == null && solvedGameBoardOfTwin == null) {
-            if (!priorityQuueue.isEmpty()) {
-
-
-                GameBoard min1 = priorityQuueue.delMin();
-                if (!min1.getBoard().isGoal()) {
-                    Iterable<Board> neighbors1 = min1.getBoard().neighbors();
-                    for (Board neighbor1 : neighbors1) {
-                        if (min1.previous == null || (min1.previous != null && !min1.previous.board.equals(neighbor1))) {
-                            GameBoard x1 = new GameBoard(neighbor1, min1, min1.getSteps() + 1);
-                            if (x1.getBoard().isGoal()) {
-                                solvedGameBoard = x1;
-                                break;
-                            }
-                            priorityQuueue.insert(x1);
-                        }
-                    }
-                }
-            }
-            if (!swapPriorityQuueue.isEmpty()) {
-                GameBoard min = swapPriorityQuueue.delMin();
-                if (!min.getBoard().isGoal()) {
-                    Iterable<Board> neighbors = min.getBoard().neighbors();
-                    for (Board neighbor : neighbors) {
-                        if (min == null || (min.previous != null && !min.previous.board.equals(neighbor))) {
-                            GameBoard x = new GameBoard(neighbor, min, min.getSteps() + 1);
-                            if (x.getBoard().isGoal()) {
-                                solvedGameBoardOfTwin = x;
-                                break;
-                            }
-                            swapPriorityQuueue.insert(x);
-                        }
-                    }
-                }
-            }
-
-
+            solvedGameBoard = solvedGame(priorityQueue);
+            solvedGameBoardOfTwin = solvedGame(swapPriorityQueue);
         }
 
+    }
+
+    private GameBoard solvedGame(MinPQ<GameBoard> priorityQueue) {
+        if (!priorityQueue.isEmpty()) {
+            GameBoard min1 = priorityQueue.delMin();
+            if (!min1.getBoard().isGoal()) {
+                Iterable<Board> neighbors1 = min1.getBoard().neighbors();
+                for (Board neighbor1 : neighbors1) {
+                    if (min1.previous == null || (min1.previous != null && !min1.previous.board.equals(neighbor1))) {
+                        GameBoard x1 = new GameBoard(neighbor1, min1, min1.getSteps() + 1);
+                        if (x1.getBoard().isGoal()) {
+                            return x1;
+                        }
+                        priorityQueue.insert(x1);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     private static class GameBoard implements Comparable<GameBoard> {
@@ -76,17 +61,6 @@ public class Solver {
             return board;
         }
 
-        public void setBoard(Board board) {
-            this.board = board;
-        }
-
-        public GameBoard getPrevious() {
-            return previous;
-        }
-
-        public void setPrevious(GameBoard previous) {
-            this.previous = previous;
-        }
 
         public int getSteps() {
             return steps;
