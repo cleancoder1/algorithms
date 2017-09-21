@@ -8,8 +8,12 @@ public class Board {
     private int n;
 
     public Board(int[][] blocks) {
-        elements = blocks;
-        n = blocks.length;
+        int[][] blocksClone = blocks.clone();
+        for (int i = 0; i < blocksClone.length; i++) {
+            blocksClone[i] = blocksClone[i].clone();
+        }
+        elements =  blocksClone;
+        n = blocksClone.length;
     }
 
     public int dimension() {
@@ -95,7 +99,7 @@ public class Board {
 
     public Iterable<Board> neighbors() {
 
-        List<Board> neighbors = new ArrayList();
+        List<Board> neighbors = new ArrayList<>();
         int xposition = positionOfElement(0)[0];
         int yposition = positionOfElement(0)[1];
         if (xposition > 0) {

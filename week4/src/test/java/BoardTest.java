@@ -80,6 +80,18 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void returnsTwin() throws Exception {
+        int[][] elements = {{0, 2}, {3,1}};
+        Board board = new Board(elements);
+        Board result = board.twin();
+        int[][] rElements = {{0, 2}, {1,3}};
+        Board expected = new Board(rElements);
+        assertEquals(expected, result);
+
+    }
+
+
 
     private static <E> List<E> makeCollection(Iterable<E> iter) {
         List<E> list = new ArrayList<E>();
