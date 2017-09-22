@@ -11,7 +11,11 @@ public class Solver {
     private GameBoard solvedGameBoard;
     private GameBoard solvedGameBoardOfTwin;
 
-    public Solver(Board initial) {
+    public Solver(final Board initial) {
+
+        if (initial == null) {
+            throw new NullPointerException();
+        }
 
         MinPQ<GameBoard> priorityQueue = new MinPQ<>();
         priorityQueue.insert(new GameBoard(initial, null, 0));
@@ -32,11 +36,11 @@ public class Solver {
                 Iterable<Board> neighbors = promisingGameBoard.getBoard().neighbors();
                 for (Board neighbor : neighbors) {
                     if (promisingGameBoard.previous == null || (promisingGameBoard.previous != null && !promisingGameBoard.previous.board.equals(neighbor))) {
-                        GameBoard x1 = new GameBoard(neighbor, promisingGameBoard, promisingGameBoard.getSteps() + 1);
-                        if (x1.getBoard().isGoal()) {
-                            return x1;
+                        GameBoard neighborGameBoard = new GameBoard(neighbor, promisingGameBoard, promisingGameBoard.getSteps() + 1);
+                        if (neighborGameBoard.getBoard().isGoal()) {
+                            return neighborGameBoard;
                         }
-                        priorityQueue.insert(x1);
+                        priorityQueue.insert(neighborGameBoard);
                     }
                 }
             } else {
@@ -47,9 +51,9 @@ public class Solver {
     }
 
     private static class GameBoard implements Comparable<GameBoard> {
-        private Board board;
-        private GameBoard previous;
-        private int steps;
+        private final Board board;
+        private final GameBoard previous;
+        private final int steps;
 
         public GameBoard(Board board, GameBoard previous, int steps) {
             this.board = board;
@@ -69,9 +73,9 @@ public class Solver {
         }
 
         @Override
-        public int compareTo(GameBoard o) {
+        public int compareTo(GameBoard other) {
             Integer manhattanPriority = board.manhattan() + steps;
-            Integer otherManhattanPriority = o.getBoard().manhattan() + o.steps;
+            Integer otherManhattanPriority = other.getBoard().manhattan() + other.steps;
             return manhattanPriority.compareTo(otherManhattanPriority);
         }
     }

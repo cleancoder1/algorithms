@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Board {
 
-    private int[][] elements;
-    private int n;
+    private final int[][] elements;
+    private final int n;
 
     public Board(int[][] blocks) {
         int[][] blocksClone = blocks.clone();
@@ -177,6 +177,6 @@ public class Board {
     }
 
     public static void main(String[] args) {
-
+        //dummy test
     }
 }
