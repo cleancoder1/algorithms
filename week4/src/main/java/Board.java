@@ -12,7 +12,7 @@ public class Board {
         for (int i = 0; i < blocksClone.length; i++) {
             blocksClone[i] = blocksClone[i].clone();
         }
-        elements =  blocksClone;
+        elements = blocksClone;
         n = blocksClone.length;
     }
 
@@ -80,7 +80,7 @@ public class Board {
         int[] positionOfZero = positionOfElement(0);
         int x = positionOfZero[0];
         if (x != 0) {
-            return swapBoard(0, 0, 1, 1);
+            return swapBoard(0, 0, 0, 1);
 
         }
         return swapBoard(n - 1, 0, n - 1, 1);

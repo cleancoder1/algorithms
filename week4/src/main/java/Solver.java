@@ -27,18 +27,20 @@ public class Solver {
 
     private GameBoard solvedGame(MinPQ<GameBoard> priorityQueue) {
         if (!priorityQueue.isEmpty()) {
-            GameBoard min1 = priorityQueue.delMin();
-            if (!min1.getBoard().isGoal()) {
-                Iterable<Board> neighbors1 = min1.getBoard().neighbors();
-                for (Board neighbor1 : neighbors1) {
-                    if (min1.previous == null || (min1.previous != null && !min1.previous.board.equals(neighbor1))) {
-                        GameBoard x1 = new GameBoard(neighbor1, min1, min1.getSteps() + 1);
+            GameBoard promisingGameBoard = priorityQueue.delMin();
+            if (!promisingGameBoard.getBoard().isGoal()) {
+                Iterable<Board> neighbors = promisingGameBoard.getBoard().neighbors();
+                for (Board neighbor : neighbors) {
+                    if (promisingGameBoard.previous == null || (promisingGameBoard.previous != null && !promisingGameBoard.previous.board.equals(neighbor))) {
+                        GameBoard x1 = new GameBoard(neighbor, promisingGameBoard, promisingGameBoard.getSteps() + 1);
                         if (x1.getBoard().isGoal()) {
                             return x1;
                         }
                         priorityQueue.insert(x1);
                     }
                 }
+            } else {
+                return promisingGameBoard;
             }
         }
         return null;
@@ -103,7 +105,7 @@ public class Solver {
 
     public static void main(String[] args) {
         // create initial board from file
-        In in = new In("C:\\development\\algorithms\\week4\\build\\resources\\test\\puzzle04.txt");
+        In in = new In("C:\\development\\algorithms\\week4\\build\\resources\\test\\puzzle00.txt");
         int n = in.readInt();
         int[][] blocks = new int[n][n];
         for (int i = 0; i < n; i++)
